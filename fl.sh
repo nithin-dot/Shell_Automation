@@ -1,7 +1,9 @@
 
 #!/bin/bash
-exec 2>/dev/null
- IFS=$'\n' 
+exec 2>/dev/null #it prevent from the error
+IFS=$'\n' # To add new line in every list
+
+#list directory
 check_dir(){
 d=$(ls -rtd */ ) 
 if [[ ! -z $d ]];
@@ -14,15 +16,15 @@ then
       echo -e "\e[0m\e[1m  $(echo "$d" | wc -l )" "Directory\n"
 fi
 }
+
 tf=$(ls)
-if [[ $tf -eq 0 ]]
+if [[ $tf -eq 0 ]] #if the directory is empty it shows
 then 
       echo "This dirctory is Empty,"
 fi
-# txtf=$(expr $tf - $d)
-# echo "Text files : $txtf"
 
-check_null(){
+# print the value from every funtion
+check_null(){ 
 if [[ $1 -ne 0 ]]
 then
       echo -e "\e[0m\e[1m  $1 $2 files\n"
@@ -31,45 +33,51 @@ fi
 
 #audio_files
 check_audio(){
-CAL_AUDIO=0
-
+CAL_AUDIO=0 #variable for assignment
+#exetensions to list
  audio_file=("$(ls *.mp3)" "$(ls *.aif)" "$(ls *.cda)" "$(ls *.mid)" "$(ls *.midi)" "$(ls *.mpa)" "$(ls *.ogg)" "$(ls *.wav)" "$(ls *.wma)" "$(ls *.wpl)")
+ #list all files in the file named audio_files
  for i in ${audio_file[@]}
  do
- if [[ ! -z $i ]]
+ if [[ ! -z $i ]] #check whether the data is empty
  then
-     CAL_AUDIO=$(($CAL_AUDIO+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+     CAL_AUDIO=$(($CAL_AUDIO+$(echo "$i" | wc -l)))  # print value
+      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" #giving color
 fi
 done
+if [[ $CAL_AUDIO -eq 0 ]] #exe if the fuction don't have output
+then 
+    echo "There is no formats under this exetensions"
+fi
 
-check_null $CAL_AUDIO AUDIO 
+check_null $CAL_AUDIO AUDIO #return value to funtion check_null
 }
 
-
+#zip_files
 check_zip()
  {
-#zip_files
 CAL_ZIP=0
  file_zip_=("$(ls *.arj)" "$(ls *.deb)" "$(ls *.pkg)" "$(ls *.rar)" "$(ls *.rpm)" "$(ls *.tar)" "$(ls *.tar.gz)" "$(ls *.tar.xz)" "$(ls *.z)" "$(ls *.zip)" "$(ls *.jar)" "$(ls *.7z)")
  for i in ${file_zip_[@]}
  do
- if [[ ! -z $i ]]
+ if [[ ! -z $i ]] 
  then
      CAL_ZIP=$(($CAL_ZIP+$(echo "$i" | wc -l)))
       echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m    $i" 
 fi
 done
 
+if [[ $CAL_ZIP -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_ZIP Zip 
  }
 
 
-
-check_bin(){
 #disc_image
+check_bin(){
 CAL_IMAGE=0
-
  disc_image=("$(ls *.vcd)" "$(ls *.bin)" "$(ls *.dmg)" "$(ls *.iso)" "$(ls *.toast)")
  for i in ${disc_image[@]}
  do
@@ -80,10 +88,15 @@ CAL_IMAGE=0
 fi
 done
 
+if [[ $CAL_IMAGE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_IMAGE DISC 
 }
-check_db(){
+
 #database_files
+check_db(){
 CAL_DATA=0
  database_file=("$(ls *.csv)" "$(ls *.dat)" "$(ls *.db)"  "$(ls *.dbf)"  "$(ls *.log)"  "$(ls *.mdb)"  "$(ls *.sav)"  "$(ls *.sql)"  "$(ls *.xml)")
   for i in ${database_file[@]}
@@ -95,8 +108,14 @@ CAL_DATA=0
 fi
 done
 
+if [[ $CAL_DATA -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_DATA DATABASE 
 }
+
+
 #E-mail_files
 check_email(){
 CAL_EFILE=0
@@ -110,8 +129,15 @@ mail_file=("$(ls *.email)"  "$(ls *.eml)"  "$(ls *.emlx)"  "$(ls *.msg)"  "$(ls 
 fi
 done
 
+if [[ $CAL_EFILE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_EFILE E-MAIL 
 }
+
+
+
 #executable_files
 check_exe(){
 CAL_EXEFILE=0
@@ -125,8 +151,15 @@ executable_file=("$(ls *.apk)"  "$(ls *.bat)"  "$(ls *.cgi)"  "$(ls *.pl)"  "$(l
 fi
 done
 
+if [[ $CAL_EXEFILE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_EXEFILE EXECUTABLE 
 }
+
+
+
 #Font_files
 check_font(){
 CAL_FFILE=0
@@ -140,8 +173,16 @@ Font_file=("$(ls *.fnt)"  "$(ls *.fon)"  "$(ls *.otf)"  "$(ls *.ttf)")
 fi
 done
 
+if [[ $CAL_FFILE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_FFILE FONT 
 }
+
+
+
+
 #images_format
 check_image(){
 CAL_IMAFILE=0 
@@ -155,10 +196,17 @@ CAL_IMAFILE=0
 fi
 done
 
+if [[ $CAL_IMAFILE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_IMAFILE IMAGE 
 }
-check_net(){
+
+
+
 #internet_based_files
+check_net(){
 CAL_INTERFILE=0
  internet_based_file=("$(ls *.asp)"  "$(ls *.cer)"  "$(ls *.cfm)"  "$(ls *.cgi)"  "$(ls *.pl)"  "$(ls *.css)"  "$(ls *.htm)"  "$(ls *.js)"  "$(ls *.jsp)"  "$(ls *.part)"  "$(ls *.php)"  "$(ls *.py)"  "$(ls *.rss)"  "$(ls *.xhtml)")
  for i in ${internet_based_file[@]}
@@ -170,8 +218,15 @@ CAL_INTERFILE=0
 fi
 done
 
+if [[ $CAL_INTERFILE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_INTERFILE INTERNET
 }
+
+
+
 #presentation_formats
 check_ppt(){
 CAL_PPTE=0
@@ -185,8 +240,15 @@ CAL_PPTE=0
 fi
 done
 
+if [[ $CAL_PPTE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_PPTE PPT 
 }
+
+
+
 #Spreadsheet_file
 check_excel(){
 CAL_EXCEL=0
@@ -200,8 +262,14 @@ CAL_EXCEL=0
 fi
 done
 
+if [[ $CAL_EXCEL -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_EXCEL EXCEL 
 }
+
+
 #system_files
 check_sys(){
 CAL_SYSFILE=0
@@ -215,8 +283,15 @@ CAL_SYSFILE=0
 fi
 done
 
+if [[ $CAL_SYSFILE -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_SYSFILE SYSFILE 
 }
+
+
+
 #Video_file_formats
 check_video(){
 CAL_VIDEO=0
@@ -230,8 +305,15 @@ CAL_VIDEO=0
 fi
 done
 
+if [[ $CAL_VIDEO -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_VIDEO VIDEO 
 }
+
+
+
 #Word_process_files
 check_word(){
 CAL_WORD=0
@@ -245,9 +327,15 @@ CAL_WORD=0
 fi
 done
 
+if [[ $CAL_WORD -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_WORD WORD 
 }
-# check_null $CAL_WORD WORD 
+
+
+
 #program_files
 check_program(){
  CAL_PROGRAM=0
@@ -261,8 +349,15 @@ check_program(){
 fi
 done
 
+if [[ $CAL_PROGRAM -eq 0 ]]
+then 
+    echo "There is no formats under this exetensions"
+fi
 check_null $CAL_PROGRAM PROGRAM 
 }
+
+#These are the program exetensions that were added..
+
 #objective c
 #C
 #C++
@@ -279,10 +374,57 @@ check_null $CAL_PROGRAM PROGRAM
 #Mat_lab
 #Golang
 #R
+get_help()
+{
+cat << _EOF_ 
+
+      -zip : It will list the "Compressed file".
+
+      -audio : It will list the "Audio file".
+
+      -bin : It will list the "Disc and media file". 
+
+      -email : It will list the "E-mail file".
+
+      -db : It will list the "Data and database file".
+
+      -exe : It will list the "Executable file".
+
+      -font : It will list the "Font file".	
+
+      -image : It will list the "Image file".	
+
+      -net : It will list the "Internet-related file".
+
+      -ppt : It will list the "Presentation file".
+
+      -excel : It will list the "Spreadsheet file".
+
+      -sys : It will list the "System related file".  
+
+      -video : It will list the "Video file".
+
+      -program : It will list the "Programming files".
+
+      -word : It will list the "Word processor and text file".
+
+      -list : It will list the files on that directory.
+
+      -dir : It will the directory.
+      
+_EOF_
+}
 
 # if [ "$1" == "-zip" ]; then
 # 	check_zip
 # fi
+if [[ ! $# -eq 1 ]]
+then
+    echo "use lf -help to know how to use this command :)"
+fi
+
+
+
 while [ ! $# -eq 0 ]
 do
 	case "$1" in
@@ -346,7 +488,21 @@ do
 			check_word
 			exit
 			;;
+             -help)
+			get_help
+			exit
+			;;
+             -list)
+                  echo $(ls -1)| xargs -n 1
+                  exit
+                  ;;
+             -dir)
+                  check_dir
+                  exit
+                  ;;
              
 	esac
 	shift
 done
+#help
+
