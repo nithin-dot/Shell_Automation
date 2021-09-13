@@ -7,14 +7,16 @@ IFS=$'\n' # To add new line in every list
 check_dir(){
 d=$(ls -rtd */ ) 
 if [[ ! -z $d ]];
-then 
+then    
+    echo -e "\n"
   for i in $d 
   do
-      echo -e "  \e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
-        
+     echo -e "  \e[0;91m\e[1m🗀 $i"| sed 's/.$//'   
   done
-      echo -e "\e[0m\e[1m  $(echo "$d" | wc -l )" "Directory\n"
+    echo -e " -$(echo "$d" | wc -l )" "Directory-"
+    echo -e "\n"
 fi
+
 }
 
 tf=$(ls)
@@ -27,7 +29,7 @@ fi
 check_null(){ 
 if [[ $1 -ne 0 ]]
 then
-      echo -e "\e[0m\e[1m  $1 $2 files\n"
+      echo -e " -$1 $2-\e[0m\n"
 fi
 }
 
@@ -37,20 +39,21 @@ CAL_AUDIO=0 #variable for assignment
 #exetensions to list
  audio_file=("$(ls *.mp3)" "$(ls *.aif)" "$(ls *.cda)" "$(ls *.mid)" "$(ls *.midi)" "$(ls *.mpa)" "$(ls *.ogg)" "$(ls *.wav)" "$(ls *.wma)" "$(ls *.wpl)")
  #list all files in the file named audio_files
+  echo -e "\n"
  for i in ${audio_file[@]}
  do
  if [[ ! -z $i ]] #check whether the data is empty
  then
      CAL_AUDIO=$(($CAL_AUDIO+$(echo "$i" | wc -l)))  # print value
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" #giving color
+      echo -e "\e[3\e[94m 𝄞 $i" #giving color
 fi
 done
-if [[ $CAL_AUDIO -eq 0 ]] #exe if the fuction don't have output
-then 
-    echo "There is no formats under this exetensions"
-fi
+# if [[ $CAL_AUDIO -eq 0 ]] #exe if the fuction don't have output
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
 
-check_null $CAL_AUDIO AUDIO #return value to funtion check_null
+check_null $CAL_AUDIO audio #return value to funtion check_null
 }
 
 #zip_files
@@ -63,14 +66,14 @@ CAL_ZIP=0
  if [[ ! -z $i ]] 
  then
      CAL_ZIP=$(($CAL_ZIP+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m    $i" 
+      echo -e "\e[93m\e[1m 🤐 $i" 
 fi
 done
 
-if [[ $CAL_ZIP -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
+# if [[ $CAL_ZIP -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
 check_null $CAL_ZIP Zip 
  }
 
@@ -84,15 +87,15 @@ CAL_IMAGE=0
  if [[ ! -z $i ]]
  then
      CAL_IMAGE=$(($CAL_IMAGE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+      echo -e " \e[1m📄$i"
+      
 fi
 done
-
-if [[ $CAL_IMAGE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_IMAGE DISC 
+# if [[ $CAL_IMAGE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_IMAGE Disc 
 }
 
 #database_files
@@ -104,15 +107,15 @@ CAL_DATA=0
  if [[ ! -z $i ]]
  then
      CAL_DATA=$(($CAL_DATA+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+      echo -e " 🗄️\e[90m\e[1m$i" 
 fi
 done
 
-if [[ $CAL_DATA -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_DATA DATABASE 
+# if [[ $CAL_DATA -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_DATA Database 
 }
 
 
@@ -125,15 +128,15 @@ mail_file=("$(ls *.email)"  "$(ls *.eml)"  "$(ls *.emlx)"  "$(ls *.msg)"  "$(ls 
  if [[ ! -z $i ]]
  then
      CAL_EFILE=$(($CAL_EFILE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+     echo -e " 📮\e[91m\e[1m$i"  
 fi
 done
 
-if [[ $CAL_EFILE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_EFILE E-MAIL 
+# if [[ $CAL_EFILE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_EFILE E-mail 
 }
 
 
@@ -147,15 +150,15 @@ executable_file=("$(ls *.apk)"  "$(ls *.bat)"  "$(ls *.cgi)"  "$(ls *.pl)"  "$(l
  if [[ ! -z $i ]]
  then
      CAL_EXEFILE=$(($CAL_EXEFILE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+     echo -e " ⚙️\e[90m\e[1m $i"
 fi
 done
 
-if [[ $CAL_EXEFILE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_EXEFILE EXECUTABLE 
+# if [[ $CAL_EXEFILE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_EXEFILE Executable 
 }
 
 
@@ -169,15 +172,15 @@ Font_file=("$(ls *.fnt)"  "$(ls *.fon)"  "$(ls *.otf)"  "$(ls *.ttf)")
  if [[ ! -z $i ]]
  then
     CAL_FFILE=$(($CAL_FFILE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+    echo -e "\e[35m\e[1m 🅕 $i" 
 fi
 done
-
-if [[ $CAL_FFILE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_FFILE FONT 
+ 
+# if [[ $CAL_FFILE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_FFILE Font 
 }
 
 
@@ -192,15 +195,15 @@ CAL_IMAFILE=0
  if [[ ! -z $i ]]
  then
     CAL_IMAFILE=$(($CAL_IMAFILE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+    echo -e " 🖼️\e[92m\e[1m $i"   
 fi
 done
 
-if [[ $CAL_IMAFILE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_IMAFILE IMAGE 
+# if [[ $CAL_IMAFILE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_IMAFILE Image 
 }
 
 
@@ -214,15 +217,15 @@ CAL_INTERFILE=0
  if [[ ! -z $i ]]
  then
     CAL_INTERFILE=$(($CAL_INTERFILE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+    echo -e " \e[90m\e[1m🕸️ $i"
 fi
 done
 
-if [[ $CAL_INTERFILE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_INTERFILE INTERNET
+# if [[ $CAL_INTERFILE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_INTERFILE Internet
 }
 
 
@@ -236,15 +239,15 @@ CAL_PPTE=0
  if [[ ! -z $i ]]
  then
     CAL_PPTE=$(($CAL_PPTE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+    echo -e " \e[34m\e[1m🕮 $i" 
 fi
 done
 
-if [[ $CAL_PPTE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_PPTE PPT 
+# if [[ $CAL_PPTE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_PPTE Ppt
 }
 
 
@@ -258,15 +261,15 @@ CAL_EXCEL=0
  if [[ ! -z $i ]]
  then
     CAL_EXCEL=$(($CAL_EXCEL+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+      echo -e " \e[32m\e[1m❎$i" 
 fi
 done
 
-if [[ $CAL_EXCEL -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_EXCEL EXCEL 
+# if [[ $CAL_EXCEL -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_EXCEL Excel 
 }
 
 
@@ -279,15 +282,15 @@ CAL_SYSFILE=0
  if [[ ! -z $i ]]
  then
    CAL_SYSFILE=$(($CAL_SYSFILE+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+    echo -e " 💻\e[1m$i" 
 fi
 done
 
-if [[ $CAL_SYSFILE -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_SYSFILE SYSFILE 
+# if [[ $CAL_SYSFILE -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_SYSFILE sysfile 
 }
 
 
@@ -301,15 +304,15 @@ CAL_VIDEO=0
  if [[ ! -z $i ]]
  then
     CAL_VIDEO=$(($CAL_VIDEO+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+    echo -e " 🎥\e[90m\e[1m$i" 
 fi
 done
 
-if [[ $CAL_VIDEO -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_VIDEO VIDEO 
+# if [[ $CAL_VIDEO -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_VIDEO Video 
 }
 
 
@@ -323,15 +326,15 @@ CAL_WORD=0
  if [[ ! -z $i ]]
  then
     CAL_WORD=$(($CAL_WORD+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+       echo -e " 🗒️\e[3m\e[1m $i"
 fi
 done
 
-if [[ $CAL_WORD -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_WORD WORD 
+# if [[ $CAL_WORD -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_WORD word 
 }
 
 
@@ -345,15 +348,15 @@ check_program(){
   if [[ ! -z $i ]]
   then
     CAL_PROGRAM=$(($CAL_PROGRAM+$(echo "$i" | wc -l)))
-      echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m\e[1m  $i" 
+      echo -e " 👨‍💻\e[93m\e[1m$i" 
 fi
 done
 
-if [[ $CAL_PROGRAM -eq 0 ]]
-then 
-    echo "There is no formats under this exetensions"
-fi
-check_null $CAL_PROGRAM PROGRAM 
+# if [[ $CAL_PROGRAM -eq 0 ]]
+# then 
+#     echo "There is no formats under this exetensions"
+# fi
+check_null $CAL_PROGRAM Program 
 }
 
 #These are the program exetensions that were added..
@@ -374,6 +377,7 @@ check_null $CAL_PROGRAM PROGRAM
 #Mat_lab
 #Golang
 #R
+
 get_help()
 {
 cat << _EOF_ 
@@ -418,12 +422,25 @@ _EOF_
 # if [ "$1" == "-zip" ]; then
 # 	check_zip
 # fi
-if [[ ! $# -eq 1 ]]
-then
-    echo "use lf -help to know how to use this command :)"
-fi
-
-
+# if [[ ! $# -eq 1 ]]
+# then
+#     echo "use lf -help to know how to use this command :)"
+# fi
+# check_dir
+# check_zip
+# check_audio
+# check_bin
+# check_email
+# check_db
+# check_exe
+# check_image
+# check_net
+# check_ppt
+# check_excel
+# check_sys
+# check_video
+# check_program
+# check_word
 
 while [ ! $# -eq 0 ]
 do
@@ -500,6 +517,7 @@ do
                   check_dir
                   exit
                   ;;
+             
              
 	esac
 	shift
