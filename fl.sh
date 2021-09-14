@@ -14,7 +14,6 @@ then
      echo -e "  \e[0;91m\e[1m🗀 $i"| sed 's/.$//'   
   done
     echo -e " -$(echo "$d" | wc -l )" "Directory-"
-    echo -e "\n"
 fi
 
 }
@@ -29,7 +28,7 @@ fi
 check_null(){ 
 if [[ $1 -ne 0 ]]
 then
-      echo -e " -$1 $2-\e[0m\n"
+      echo -e " -$1 $2-\e[0m"
 fi
 }
 
@@ -39,13 +38,12 @@ CAL_AUDIO=0 #variable for assignment
 #exetensions to list
  audio_file=("$(ls *.mp3)" "$(ls *.aif)" "$(ls *.cda)" "$(ls *.mid)" "$(ls *.midi)" "$(ls *.mpa)" "$(ls *.ogg)" "$(ls *.wav)" "$(ls *.wma)" "$(ls *.wpl)")
  #list all files in the file named audio_files
-  echo -e "\n"
  for i in ${audio_file[@]}
  do
  if [[ ! -z $i ]] #check whether the data is empty
  then
      CAL_AUDIO=$(($CAL_AUDIO+$(echo "$i" | wc -l)))  # print value
-      echo -e "\e[3\e[94m 𝄞 $i" #giving color
+      echo -e "  \e[3\e[94m𝄞 $i" #giving color
 fi
 done
 # if [[ $CAL_AUDIO -eq 0 ]] #exe if the fuction don't have output
@@ -66,7 +64,7 @@ CAL_ZIP=0
  if [[ ! -z $i ]] 
  then
      CAL_ZIP=$(($CAL_ZIP+$(echo "$i" | wc -l)))
-      echo -e "\e[93m\e[1m 🤐 $i" 
+      echo -e "  \e[93m\e[1m🤐$i" 
 fi
 done
 
@@ -87,7 +85,7 @@ CAL_IMAGE=0
  if [[ ! -z $i ]]
  then
      CAL_IMAGE=$(($CAL_IMAGE+$(echo "$i" | wc -l)))
-      echo -e " \e[1m📄$i"
+      echo -e "  \e[1m📄$i"
       
 fi
 done
@@ -107,7 +105,7 @@ CAL_DATA=0
  if [[ ! -z $i ]]
  then
      CAL_DATA=$(($CAL_DATA+$(echo "$i" | wc -l)))
-      echo -e " 🗄️\e[90m\e[1m$i" 
+      echo -e "  🗄️\e[90m\e[1m$i" 
 fi
 done
 
@@ -128,7 +126,7 @@ mail_file=("$(ls *.email)"  "$(ls *.eml)"  "$(ls *.emlx)"  "$(ls *.msg)"  "$(ls 
  if [[ ! -z $i ]]
  then
      CAL_EFILE=$(($CAL_EFILE+$(echo "$i" | wc -l)))
-     echo -e " 📮\e[91m\e[1m$i"  
+     echo -e "  📮\e[91m\e[1m$i"  
 fi
 done
 
@@ -150,7 +148,7 @@ executable_file=("$(ls *.apk)"  "$(ls *.bat)"  "$(ls *.cgi)"  "$(ls *.pl)"  "$(l
  if [[ ! -z $i ]]
  then
      CAL_EXEFILE=$(($CAL_EXEFILE+$(echo "$i" | wc -l)))
-     echo -e " ⚙️\e[90m\e[1m $i"
+     echo -e "  ⚙️\e[90m\e[1m $i"
 fi
 done
 
@@ -172,7 +170,7 @@ Font_file=("$(ls *.fnt)"  "$(ls *.fon)"  "$(ls *.otf)"  "$(ls *.ttf)")
  if [[ ! -z $i ]]
  then
     CAL_FFILE=$(($CAL_FFILE+$(echo "$i" | wc -l)))
-    echo -e "\e[35m\e[1m 🅕 $i" 
+    echo -e "  \e[35m\e[1m🅕 $i" 
 fi
 done
  
@@ -195,7 +193,7 @@ CAL_IMAFILE=0
  if [[ ! -z $i ]]
  then
     CAL_IMAFILE=$(($CAL_IMAFILE+$(echo "$i" | wc -l)))
-    echo -e " 🖼️\e[92m\e[1m $i"   
+    echo -e "  🖼️\e[92m\e[1m $i"   
 fi
 done
 
@@ -217,7 +215,7 @@ CAL_INTERFILE=0
  if [[ ! -z $i ]]
  then
     CAL_INTERFILE=$(($CAL_INTERFILE+$(echo "$i" | wc -l)))
-    echo -e " \e[90m\e[1m🕸️ $i"
+    echo -e "  \e[90m\e[1m🕸️ $i"
 fi
 done
 
@@ -239,7 +237,7 @@ CAL_PPTE=0
  if [[ ! -z $i ]]
  then
     CAL_PPTE=$(($CAL_PPTE+$(echo "$i" | wc -l)))
-    echo -e " \e[34m\e[1m🕮 $i" 
+    echo -e "  \e[34m\e[1m🕮 $i" 
 fi
 done
 
@@ -261,7 +259,7 @@ CAL_EXCEL=0
  if [[ ! -z $i ]]
  then
     CAL_EXCEL=$(($CAL_EXCEL+$(echo "$i" | wc -l)))
-      echo -e " \e[32m\e[1m❎$i" 
+      echo -e "  \e[32m\e[1m❎$i" 
 fi
 done
 
@@ -282,7 +280,7 @@ CAL_SYSFILE=0
  if [[ ! -z $i ]]
  then
    CAL_SYSFILE=$(($CAL_SYSFILE+$(echo "$i" | wc -l)))
-    echo -e " 💻\e[1m$i" 
+    echo -e "  💻\e[1m$i" 
 fi
 done
 
@@ -304,7 +302,7 @@ CAL_VIDEO=0
  if [[ ! -z $i ]]
  then
     CAL_VIDEO=$(($CAL_VIDEO+$(echo "$i" | wc -l)))
-    echo -e " 🎥\e[90m\e[1m$i" 
+    echo -e "  🎥\e[90m\e[1m$i" 
 fi
 done
 
@@ -326,7 +324,7 @@ CAL_WORD=0
  if [[ ! -z $i ]]
  then
     CAL_WORD=$(($CAL_WORD+$(echo "$i" | wc -l)))
-       echo -e " 🗒️\e[3m\e[1m $i"
+       echo -e "  🗒️\e[0m\e[1m $i"
 fi
 done
 
@@ -348,7 +346,7 @@ check_program(){
   if [[ ! -z $i ]]
   then
     CAL_PROGRAM=$(($CAL_PROGRAM+$(echo "$i" | wc -l)))
-      echo -e " 👨‍💻\e[93m\e[1m$i" 
+      echo -e "  👨‍💻\e[93m\e[1m$i" 
 fi
 done
 
@@ -380,41 +378,39 @@ check_null $CAL_PROGRAM Program
 
 get_help()
 {
-cat << _EOF_ 
+    echo -e "\n\t\e[1mUsage : lf -flag\e[0m\n"
+cat << _EOF_     
+    -z    It will list the "Compressed file".
 
-      -zip : It will list the "Compressed file".
+    -a    It will list the "Audio file".
 
-      -audio : It will list the "Audio file".
+    -b    It will list the "Disc and media file". 
 
-      -bin : It will list the "Disc and media file". 
+    -el   It will list the "E-mail file".
 
-      -email : It will list the "E-mail file".
+    -db   It will list the "Data and database file".
 
-      -db : It will list the "Data and database file".
+    -exe  It will list the "Executable file".
 
-      -exe : It will list the "Executable file".
+    -f    It will list the "Font file".	
 
-      -font : It will list the "Font file".	
+    -i    It will list the "Image file".	
 
-      -image : It will list the "Image file".	
+    -n    It will list the "Internet-related file".
 
-      -net : It will list the "Internet-related file".
+    -p    It will list the "Presentation file".
 
-      -ppt : It will list the "Presentation file".
+    -e    It will list the "Spreadsheet file".
 
-      -excel : It will list the "Spreadsheet file".
+    -s    It will list the "System related file".  
 
-      -sys : It will list the "System related file".  
+    -v    It will list the "Video file".
 
-      -video : It will list the "Video file".
+    -pm   It will list the "Programming files".
 
-      -program : It will list the "Programming files".
+    -w    It will list the "Word processor and text file".
 
-      -word : It will list the "Word processor and text file".
-
-      -list : It will list the files on that directory.
-
-      -dir : It will the directory.
+    -dir  It will the directory.
       
 _EOF_
 }
@@ -422,101 +418,98 @@ _EOF_
 # if [ "$1" == "-zip" ]; then
 # 	check_zip
 # fi
-# if [[ ! $# -eq 1 ]]
-# then
+if [[ ! $# -eq 1 ]]
+then
+check_dir
+check_zip
+check_audio
+check_bin
+check_email
+check_db
+check_exe
+check_image
+check_net
+check_ppt
+check_excel
+check_sys
+check_video
+check_program
+check_word
 #     echo "use lf -help to know how to use this command :)"
-# fi
-# check_dir
-# check_zip
-# check_audio
-# check_bin
-# check_email
-# check_db
-# check_exe
-# check_image
-# check_net
-# check_ppt
-# check_excel
-# check_sys
-# check_video
-# check_program
-# check_word
+fi
+
 
 while [ ! $# -eq 0 ]
 do
 	case "$1" in
-		 -zip)
+		 -z)
 			check_zip
 			exit
 			;;
-		 -audio)
+		 -a)
 			check_audio
 			exit
 			;;
-             -bin)
+         -b)
 			check_bin
 			exit
 			;;
-             -email)
+         -el)
 			check_email
 			exit
 			;;
-             -db)
+         -db)
 			check_db
 			exit
 			;;
-             -exe)
+         -exe)
 			check_exe
 			exit
 			;;
-             -font)
+         -f)
 			check_font
 			exit
 			;;
-             -image)
+         -i)
 			check_image
 			exit
 			;;
-             -net)
+         -n)
 			check_net
 			exit
 			;;
-             -ppt)
+         -p)
 			check_ppt
 			exit
 			;;
-             -excel)
+         -e)
 			check_excel
 			exit
 			;;
-             -sys)
+         -s)
 			check_sys
 			exit
 			;;
-             -video)
+         -v)
 			check_video
 			exit
 			;;
-             -program)
+         -pm)
 			check_program
 			exit
 			;;
-             -word)
+         -w)
 			check_word
 			exit
 			;;
-             -help)
+         -help)
 			get_help
 			exit
 			;;
-             -list)
-                  echo $(ls -1)| xargs -n 1
-                  exit
-                  ;;
-             -dir)
-                  check_dir
-                  exit
-                  ;;
+         -dir)
+            check_dir
+            exit
+            ;;
              
              
 	esac
